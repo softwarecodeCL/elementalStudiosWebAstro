@@ -1,0 +1,222 @@
+---
+const items = [
+  {
+    logo: '/logo-empresa-1.png',
+    image: '/elementalStudios.png',
+    title: 'Capacitación con enfoque práctico',
+    text: 'Diseñamos programas de idiomas aplicados a contextos reales de trabajo, enfocados en mejorar la atención, la comunicación y la experiencia del cliente en hotelería, turismo y empresas.'
+  },
+  {
+    logo: '/logo-empresa-2.png',
+    image: '/sence.png',
+    title: 'Organismo de capacitación con Código SENCE',
+    text: 'Somos un organismo de capacitación reconocido que cuenta con Código SENCE, lo que permite a las empresas acceder a programas de formación con beneficios tributarios. Nuestros cursos están diseñados para fortalecer las habilidades de comunicación en inglés y portugués dentro de contextos reales de trabajo, especialmente en hotelería, turismo y atención al cliente.'
+ }
+];
+---
+
+<section class="quienes-somos" aria-label="Quiénes somos">
+  <div class="container">
+    <div class="section-heading">
+      <span class="eyebrow">Quiénes somos</span>
+      <h2>Formación en idiomas orientada a resultados reales</h2>
+      <p>
+        Combinamos metodología, experiencia y foco operativo para entregar programas
+        que generan impacto en la atención, el servicio y la comunicación profesional.
+      </p>
+    </div>
+
+    <div class="qs-grid">
+      {items.map((item) => (
+        <article class="qs-card">
+
+          <div class="qs-image-wrap">
+            <img
+              src={item.image}
+              alt={item.title}
+              class="qs-image"
+              loading="lazy"
+            />
+          </div>
+
+          <div class="qs-content">
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .quienes-somos {
+    position: relative;
+    background:
+      radial-gradient(circle at top left, rgba(207,151,82,0.08), transparent 26%),
+      linear-gradient(180deg, #f8fafc 0%, #eef3f8 100%);
+    padding: clamp(4rem, 8vw, 7rem) 0;
+  }
+
+  .container {
+    width: min(1200px, calc(100% - 2rem));
+    margin: 0 auto;
+  }
+
+  .section-heading {
+    max-width: 820px;
+    margin: 0 auto 3rem;
+    text-align: center;
+  }
+
+  .eyebrow {
+    display: inline-block;
+    margin-bottom: 0.85rem;
+    padding: 0.55rem 0.95rem;
+    border-radius: 999px;
+    background: rgba(8, 17, 29, 0.06);
+    color: #9a6a2f;
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.03em;
+  }
+
+  .section-heading h2 {
+    margin: 0 0 1rem;
+    color: #0f172a;
+    font-size: clamp(2rem, 4.5vw, 3.3rem);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+  }
+
+  .section-heading p {
+    margin: 0;
+    color: #475569;
+    font-size: clamp(1rem, 1.5vw, 1.1rem);
+    line-height: 1.75;
+  }
+
+  .qs-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(1.25rem, 2vw, 2rem);
+    align-items: stretch;
+  }
+
+    .qs-card {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        overflow: hidden;
+        border: 1px solid rgba(15, 23, 42, 0.08);
+        border-radius: 28px;
+        background: rgba(255, 255, 255, 0.78);
+        backdrop-filter: blur(12px);
+        box-shadow:
+            0 20px 50px rgba(15, 23, 42, 0.08),
+            0 6px 18px rgba(15, 23, 42, 0.04);
+        transition:
+            transform 0.25s ease,
+            box-shadow 0.25s ease,
+            border-color 0.25s ease;
+    }
+
+  .qs-card:hover {
+    transform: translateY(-6px);
+    box-shadow:
+      0 28px 60px rgba(15, 23, 42, 0.12),
+      0 10px 24px rgba(15, 23, 42, 0.08);
+    border-color: rgba(207,151,82,0.22);
+  }
+
+    .qs-logo-wrap {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1.4rem 1.4rem 0.6rem;
+        min-height: 110px;
+    }
+  .qs-logo {
+    max-height: 68px;
+    width: auto;
+    max-width: 180px;
+    object-fit: contain;
+  }
+
+.qs-image-wrap {
+  padding-inline: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 280px;
+}
+.qs-image {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  max-height: 240px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 22px;
+}
+.qs-content {
+  padding: 1.4rem 1.25rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+
+    .qs-content h3 {
+    margin: 0 0 0.85rem;
+    color: #0f172a;
+    font-size: clamp(1.25rem, 2vw, 1.6rem);
+    line-height: 1.2;
+    min-height: 3.2rem;
+    }
+  .qs-content p {
+    margin: 0;
+    color: #475569;
+    font-size: 1rem;
+    line-height: 1.75;
+  }
+
+  @media (max-width: 991.98px) {
+    .qs-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .section-heading {
+      margin-bottom: 2rem;
+    }
+  }
+
+  @media (max-width: 575.98px) {
+    .quienes-somos {
+      padding: 3.8rem 0;
+    }
+
+    .container {
+      width: min(100% - 1rem, 1200px);
+    }
+
+    .qs-card {
+      border-radius: 22px;
+    }
+
+    .qs-image {
+      height: 220px;
+      border-radius: 18px;
+    }
+
+    .qs-content {
+      padding: 1.15rem 1rem 1.25rem;
+    }
+
+    .qs-logo {
+      max-height: 56px;
+      max-width: 150px;
+    }
+  }
+</style>

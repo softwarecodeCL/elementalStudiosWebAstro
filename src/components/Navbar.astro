@@ -1,0 +1,39 @@
+---
+
+const navItems = [
+  { label: "Hablemos", href: "https://www.elementalstudios.cl/login/index.php"  },
+];
+---
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom sticky-top shadow-sm">
+  <div class="container">
+    <img src="/logorender.png" class="image-fluid" style="max-height: 100px;">
+
+    
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
+        {navItems.map((item) => (
+        <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+          <a href="https://www.elementalstudios.cl/login/index.php" class="btn btn-dark rounded-pill px-4" target="_blank">
+            Login Moodle
+          </a>
+        </li>
+        ))}
+
+
+      </ul>
+  </div>
+</nav>
+
+<style>
+  .navbar-brand {
+    letter-spacing: 0.3px;
+  }
+
+  .nav-link {
+    font-weight: 500;
+  }
+
+  .nav-link:hover {
+    opacity: 0.75;
+  }
+</style>

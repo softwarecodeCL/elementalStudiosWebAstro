@@ -1,0 +1,356 @@
+---
+import QuienesSomos from './QuienesSomos.astro';
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/effect-fade";
+
+const slides = [
+  {
+    title: 'Inglés Aplicado a la Operación Hotelera',
+    text: 'Capacitación práctica para equipos que atienden huéspedes internacionales.',
+    sub:'Recepción · Housekeeping · Restaurante · Concierge',
+    image: '/slide1.png',
+    position: 'center center',
+    positionMobile: '72% center',
+    buttonText: 'Contáctanos',
+    buttonLink: 'https://wa.link/phiydi'
+  },
+  {
+    title: 'Portugués para la Atención de Huéspedes Brasileños',
+    text: 'Entrenamiento diseñado para mejorar la comunicación con uno de los principales mercados turísticos de Chile.',
+    sub:'Recepción · Reservas · Restaurante · Atención al cliente',
+    image: '/slide2.png',
+    position: 'center center',
+    positionMobile: '65% center',
+    buttonText: 'Contáctanos',
+    buttonLink: 'https://wa.link/phiydi'
+  },
+  {
+    title: 'Programas de Idiomas para Empresas',
+    text: 'Desarrollamos habilidades de comunicación en inglés y portugués aplicadas al entorno profesional.',
+    sub:'Capacitación corporativa · Hotelería · Turismo · Atención de público',
+    image: '/slide3.jpg',
+    position: 'center center',
+    positionMobile: '78% center',
+    buttonText: 'Contáctanos',
+    buttonLink: 'https://wa.link/phiydi'
+  }
+];
+---
+
+<section class="hero-slider" aria-label="Presentación principal">
+  <div class="swiper heroSwiper">
+    <div class="swiper-wrapper">
+      {slides.map((slide) => (
+        <div
+          class="swiper-slide"
+          style={`--bg-pos:${slide.position}; --bg-pos-mobile:${slide.positionMobile};`}
+        >
+          <div
+            class="slide-bg"
+            style={`background-image:
+              linear-gradient(180deg, rgba(4,10,18,.34) 0%, rgba(4,10,18,.62) 100%),
+              url(${slide.image});`}
+          >
+            <div class="slide-overlay"></div>
+
+            <div class="slide-content">
+              <div class="content-inner">
+                <span class="hero-kicker">Capacitación especializada para hotelería y empresas</span>
+                <h1>{slide.title}</h1>
+                <p>{slide.text}</p>
+                <div class="hero-sub">{slide.sub}</div>
+
+                <a
+                  href={slide.buttonLink}
+                  class="slide-button"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {slide.buttonText}
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="swiper-pagination"></div>
+    <div class="swiper-button-prev" aria-label="Slide anterior"></div>
+    <div class="swiper-button-next" aria-label="Slide siguiente"></div>
+  </div>
+
+
+    
+
+</section>
+<QuienesSomos color="#f8fafc" />
+<style>
+  :global(html, body) {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
+  }
+
+  .hero-slider {
+    position: relative;
+    width: 100%;
+    height: 100dvh;
+    min-height: 100vh;
+    overflow: hidden;
+    background: #08111d;
+  }
+
+  .heroSwiper,
+  .swiper-slide,
+  .slide-bg {
+    width: 100%;
+    height: 100dvh;
+    min-height: 100vh;
+  }
+
+  .slide-bg {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background-size: cover;
+    background-position: var(--bg-pos, center center);
+    background-repeat: no-repeat;
+  }
+
+  .slide-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 18% 28%, rgba(255,255,255,0.10), transparent 28%),
+      radial-gradient(circle at 80% 20%, rgba(207,151,82,0.12), transparent 22%),
+      linear-gradient(90deg, rgba(0,0,0,0.38) 0%, rgba(0,0,0,0.16) 44%, rgba(0,0,0,0.28) 100%);
+    pointer-events: none;
+  }
+
+  .slide-content {
+    padding-top: 150px;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    padding-inline: clamp(1.25rem, 5vw, 6rem);
+  }
+
+  .content-inner {
+    max-width: min(920px, 92vw);
+  }
+
+  .hero-kicker {
+    display: inline-block;
+    margin-bottom: 1rem;
+    padding: 0.55rem 0.95rem;
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 999px;
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(10px);
+    color: rgba(255,255,255,0.92);
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+
+  .slide-content h1 {
+    margin: 0 0 1rem 0;
+    color: #fff;
+    font-size: clamp(1.9rem, 6vw, 4.6rem);
+    line-height: 0.98;
+    letter-spacing: -0.03em;
+    font-weight: 700;
+    text-wrap: balance;
+  }
+
+  .slide-content p {
+    margin: 0 0 1rem 0;
+    max-width: 700px;
+    color: rgba(255, 255, 255, 0.94);
+    font-size: clamp(1rem, 1.7vw, 1.3rem);
+    line-height: 1.65;
+    text-wrap: pretty;
+  }
+
+  .hero-sub {
+    margin-bottom: 1.75rem;
+    color: rgba(255,255,255,0.8);
+    font-size: 0.98rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+
+  .slide-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 54px;
+    padding: 0.95rem 1.6rem;
+    background: linear-gradient(135deg, #d4a566 0%, #cf9752 100%);
+    color: #111827;
+    text-decoration: none;
+    border-radius: 999px;
+    font-weight: 800;
+    font-size: 1rem;
+    transition:
+      transform 0.2s ease,
+      opacity 0.2s ease,
+      box-shadow 0.2s ease;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.24);
+  }
+
+  .slide-button:hover {
+    transform: translateY(-2px);
+    opacity: 0.98;
+    box-shadow: 0 20px 44px rgba(0, 0, 0, 0.28);
+  }
+
+  :global(.heroSwiper .swiper-button-prev),
+  :global(.heroSwiper .swiper-button-next) {
+    color: #fff;
+    width: 48px;
+    height: 48px;
+  }
+
+  :global(.heroSwiper .swiper-button-prev::after),
+  :global(.heroSwiper .swiper-button-next::after) {
+    font-size: 1.25rem;
+    font-weight: 800;
+  }
+
+  :global(.heroSwiper .swiper-pagination) {
+    bottom: 26px !important;
+  }
+
+  :global(.heroSwiper .swiper-pagination-bullet) {
+    width: 10px;
+    height: 10px;
+    background: #fff;
+    opacity: 0.5;
+  }
+
+  :global(.heroSwiper .swiper-pagination-bullet-active) {
+    opacity: 1;
+  }
+
+  .hero-wave {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    z-index: 5;
+    pointer-events: none;
+  }
+
+  @media (max-width: 991.98px) {
+    .slide-content {
+      padding-inline: 1.5rem;
+    }
+
+    .content-inner,
+    .slide-content p {
+      max-width: 100%;
+    }
+  }
+
+  @media (max-width: 767.98px) {
+    .hero-slider,
+    .heroSwiper,
+    .swiper-slide,
+    .slide-bg {
+      height: 100svh;
+      min-height: 100svh;
+    }
+
+    .slide-bg {
+      align-items: flex-end;
+      background-position: var(--bg-pos-mobile, center center);
+    }
+
+    .slide-content {
+      padding-inline: 1.1rem;
+      padding-bottom: 5.8rem;
+      padding-top: 0;
+    }
+
+    .hero-kicker {
+      font-size: 0.8rem;
+      padding: 0.5rem 0.85rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .slide-content h1 {
+      font-size: clamp(2rem, 10vw, 3rem);
+      line-height: 1.02;
+      margin-bottom: 0.85rem;
+    }
+
+    .slide-content p {
+      font-size: 1rem;
+      line-height: 1.55;
+      margin-bottom: 0.9rem;
+    }
+
+    .hero-sub {
+      font-size: 0.9rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .slide-button {
+      width: 100%;
+      max-width: 280px;
+      min-height: 50px;
+    }
+
+    :global(.heroSwiper .swiper-button-prev),
+    :global(.heroSwiper .swiper-button-next) {
+      display: none;
+    }
+
+    :global(.heroSwiper .swiper-pagination) {
+      bottom: 18px !important;
+    }
+  }
+
+  @media (max-width: 420px) {
+    .slide-content {
+      padding-inline: 0.95rem;
+      padding-bottom: 5.4rem;
+    }
+
+    .slide-content h1 {
+      font-size: 1.9rem;
+    }
+  }
+</style>
+
+<script>
+  import Swiper from 'swiper';
+  import { Navigation, Pagination, Autoplay, EffectFade } from 'swiper/modules';
+
+  new Swiper('.heroSwiper', {
+    modules: [Navigation, Pagination, Autoplay, EffectFade],
+    loop: true,
+    speed: 900,
+    effect: 'fade',
+    fadeEffect: {
+      crossFade: true
+    },
+    autoplay: {
+      delay: 5000,
+      disableOnInteraction: false
+    },
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev'
+    }
+  });
+</script>
