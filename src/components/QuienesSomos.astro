@@ -17,19 +17,54 @@ const items = [
 
 <section class="quienes-somos" aria-label="Quiénes somos">
   <div class="container">
-    <div class="section-heading">
-      <span class="eyebrow">Quiénes somos</span>
-      <h2>Formación en idiomas orientada a resultados reales</h2>
-      <p>
+    <div
+      class="section-heading"
+      data-aos="zoom-out-up"
+      data-aos-duration="1200"
+      data-aos-easing="cubic-bezier(0.22, 1, 0.36, 1)"
+    >
+      <span
+        class="eyebrow"
+        data-aos="fade-down"
+        data-aos-delay="80"
+        data-aos-duration="900"
+      >
+        Quiénes somos
+      </span>
+
+      <h2
+        data-aos="fade-up"
+        data-aos-delay="140"
+        data-aos-duration="1100"
+      >
+        Formación en idiomas orientada a resultados reales
+      </h2>
+
+      <p
+        data-aos="fade-up"
+        data-aos-delay="240"
+        data-aos-duration="1200"
+      >
         Combinamos metodología, experiencia y foco operativo para entregar programas
         que generan impacto en la atención, el servicio y la comunicación profesional.
       </p>
     </div>
 
     <div class="qs-grid">
-      {items.map((item) => (
-        <article class="qs-card">
-          <div class="qs-image-wrap">
+      {items.map((item, index) => (
+        <article
+          class="qs-card"
+          data-aos={index % 2 === 0 ? "fade-right" : "fade-left"}
+          data-aos-delay={index * 180}
+          data-aos-duration="1200"
+          data-aos-easing="cubic-bezier(0.22, 1, 0.36, 1)"
+        >
+          <div
+            class="qs-image-wrap"
+            data-aos="zoom-in-up"
+            data-aos-delay={120 + index * 180}
+            data-aos-duration="1300"
+          >
             <img
               src={item.image}
               alt={item.title}
@@ -41,7 +76,12 @@ const items = [
             />
           </div>
 
-          <div class="qs-content">
+          <div
+            class="qs-content"
+            data-aos="fade-up"
+            data-aos-delay={220 + index * 180}
+            data-aos-duration="1100"
+          >
             <h3>{item.title}</h3>
             <p>{item.text}</p>
           </div>
@@ -54,13 +94,28 @@ const items = [
 <style>
   .quienes-somos {
     position: relative;
+    overflow: hidden;
     background:
       radial-gradient(circle at top left, rgba(207,151,82,0.08), transparent 26%),
       linear-gradient(180deg, #f8fafc 0%, #eef3f8 100%);
     padding: clamp(4rem, 8vw, 7rem) 0;
   }
 
+  .quienes-somos::before {
+    content: "";
+    position: absolute;
+    inset: auto -10% 8% auto;
+    width: 340px;
+    height: 340px;
+    border-radius: 999px;
+    background: radial-gradient(circle, rgba(40,101,158,0.10), transparent 70%);
+    pointer-events: none;
+    filter: blur(18px);
+  }
+
   .container {
+    position: relative;
+    z-index: 1;
     width: min(1200px, calc(100% - 2rem));
     margin: 0 auto;
   }
@@ -81,6 +136,7 @@ const items = [
     font-weight: 700;
     font-size: 0.9rem;
     letter-spacing: 0.03em;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
   }
 
   .section-heading h2 {
@@ -89,6 +145,7 @@ const items = [
     font-size: clamp(2rem, 4.5vw, 3.3rem);
     line-height: 1.05;
     letter-spacing: -0.03em;
+    text-wrap: balance;
   }
 
   .section-heading p {
@@ -106,21 +163,44 @@ const items = [
   }
 
   .qs-card {
+    position: relative;
     display: flex;
     flex-direction: column;
     height: 100%;
     overflow: hidden;
     border: 1px solid rgba(15, 23, 42, 0.08);
     border-radius: 24px;
-    background: #ffffff;
-    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.94) 100%);
+    box-shadow:
+      0 10px 24px rgba(15, 23, 42, 0.08),
+      0 1px 0 rgba(255,255,255,0.8) inset;
+    transition:
+      transform 0.35s ease,
+      box-shadow 0.35s ease,
+      border-color 0.35s ease;
+    will-change: transform;
+  }
+
+  .qs-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(255,255,255,0.22) 0%,
+      rgba(255,255,255,0.04) 45%,
+      rgba(40,101,158,0.04) 100%
+    );
+    pointer-events: none;
   }
 
   .qs-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 16px 30px rgba(15, 23, 42, 0.10);
-    border-color: rgba(207,151,82,0.22);
+    transform: translateY(-8px);
+    box-shadow:
+      0 24px 44px rgba(15, 23, 42, 0.12),
+      0 1px 0 rgba(255,255,255,0.88) inset;
+    border-color: rgba(207,151,82,0.26);
   }
 
   .qs-image-wrap {
@@ -140,6 +220,13 @@ const items = [
     height: auto;
     object-fit: contain;
     border-radius: 18px;
+    transform: translateZ(0);
+    transition: transform 0.45s ease, filter 0.45s ease;
+  }
+
+  .qs-card:hover .qs-image {
+    transform: scale(1.03);
+    filter: saturate(1.02);
   }
 
   .qs-content {
@@ -172,6 +259,22 @@ const items = [
     .section-heading {
       margin-bottom: 2rem;
     }
+
+    .qs-card {
+      transition: box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+
+    .qs-card:hover {
+      transform: none;
+      box-shadow:
+        0 14px 26px rgba(15, 23, 42, 0.09),
+        0 1px 0 rgba(255,255,255,0.88) inset;
+    }
+
+    .qs-card:hover .qs-image {
+      transform: none;
+      filter: none;
+    }
   }
 
   @media (max-width: 575.98px) {
@@ -185,11 +288,6 @@ const items = [
 
     .qs-card {
       border-radius: 20px;
-      box-shadow: 0 8px 18px rgba(15, 23, 42, 0.07);
-    }
-
-    .qs-card:hover {
-      transform: none;
       box-shadow: 0 8px 18px rgba(15, 23, 42, 0.07);
     }
 
@@ -209,6 +307,17 @@ const items = [
 
     .qs-content h3 {
       min-height: auto;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .qs-card,
+    .qs-image,
+    .navbar,
+    .section-heading,
+    .eyebrow {
+      transition: none !important;
+      animation: none !important;
     }
   }
 </style>
