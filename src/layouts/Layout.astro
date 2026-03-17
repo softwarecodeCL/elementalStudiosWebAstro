@@ -28,7 +28,7 @@ import "aos/dist/aos.css";
       once: true,
       offset: 80,
       mirror: false,
-      easing: "cubic-bezier(0.22, 1, 0.36, 1)",
+      easing: "ease-out-cubic",
       anchorPlacement: "top-bottom"
     });
   });
@@ -49,5 +49,9 @@ import "aos/dist/aos.css";
   img {
     max-width: 100%;
     height: auto;
+  }
+
+  [data-aos] {
+    transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1) !important;
   }
 </style>
