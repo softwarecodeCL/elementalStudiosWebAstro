@@ -11,7 +11,7 @@ const items = [
     image: '/sence.png',
     title: 'Organismo de capacitación con Código SENCE',
     text: 'Somos un organismo de capacitación reconocido que cuenta con Código SENCE, lo que permite a las empresas acceder a programas de formación con beneficios tributarios. Nuestros cursos están diseñados para fortalecer las habilidades de comunicación en inglés y portugués dentro de contextos reales de trabajo, especialmente en hotelería, turismo y atención al cliente.'
- }
+  }
 ];
 ---
 
@@ -29,13 +29,15 @@ const items = [
     <div class="qs-grid">
       {items.map((item) => (
         <article class="qs-card">
-
           <div class="qs-image-wrap">
             <img
               src={item.image}
               alt={item.title}
               class="qs-image"
               loading="lazy"
+              decoding="async"
+              width="640"
+              height="400"
             />
           </div>
 
@@ -99,87 +101,67 @@ const items = [
   .qs-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: clamp(1.25rem, 2vw, 2rem);
+    gap: 1.5rem;
     align-items: stretch;
   }
 
-    .qs-card {
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-        overflow: hidden;
-        border: 1px solid rgba(15, 23, 42, 0.08);
-        border-radius: 28px;
-        background: rgba(255, 255, 255, 0.78);
-        backdrop-filter: blur(12px);
-        box-shadow:
-            0 20px 50px rgba(15, 23, 42, 0.08),
-            0 6px 18px rgba(15, 23, 42, 0.04);
-        transition:
-            transform 0.25s ease,
-            box-shadow 0.25s ease,
-            border-color 0.25s ease;
-    }
+  .qs-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    border-radius: 24px;
+    background: #ffffff;
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
 
   .qs-card:hover {
-    transform: translateY(-6px);
-    box-shadow:
-      0 28px 60px rgba(15, 23, 42, 0.12),
-      0 10px 24px rgba(15, 23, 42, 0.08);
+    transform: translateY(-4px);
+    box-shadow: 0 16px 30px rgba(15, 23, 42, 0.10);
     border-color: rgba(207,151,82,0.22);
   }
 
-    .qs-logo-wrap {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 1.4rem 1.4rem 0.6rem;
-        min-height: 110px;
-    }
-  .qs-logo {
-    max-height: 68px;
-    width: auto;
-    max-width: 180px;
-    object-fit: contain;
+  .qs-image-wrap {
+    padding: 1rem 1rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 220px;
   }
 
-.qs-image-wrap {
-  padding-inline: 1rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 280px;
-}
-.qs-image {
-  display: block;
-  margin: 0 auto;
-  max-width: 100%;
-  max-height: 240px;
-  width: auto;
-  height: auto;
-  object-fit: contain;
-  border-radius: 22px;
-}
-.qs-content {
-  padding: 1.4rem 1.25rem 1.5rem;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-}
+  .qs-image {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    max-height: 220px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 18px;
+  }
 
+  .qs-content {
+    padding: 1.25rem 1.25rem 1.4rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
 
-    .qs-content h3 {
+  .qs-content h3 {
     margin: 0 0 0.85rem;
     color: #0f172a;
-    font-size: clamp(1.25rem, 2vw, 1.6rem);
+    font-size: clamp(1.2rem, 2vw, 1.55rem);
     line-height: 1.2;
-    min-height: 3.2rem;
-    }
+    min-height: 3rem;
+  }
+
   .qs-content p {
     margin: 0;
     color: #475569;
     font-size: 1rem;
-    line-height: 1.75;
+    line-height: 1.7;
   }
 
   @media (max-width: 991.98px) {
@@ -194,7 +176,7 @@ const items = [
 
   @media (max-width: 575.98px) {
     .quienes-somos {
-      padding: 3.8rem 0;
+      padding: 3.4rem 0;
     }
 
     .container {
@@ -202,21 +184,31 @@ const items = [
     }
 
     .qs-card {
-      border-radius: 22px;
+      border-radius: 20px;
+      box-shadow: 0 8px 18px rgba(15, 23, 42, 0.07);
+    }
+
+    .qs-card:hover {
+      transform: none;
+      box-shadow: 0 8px 18px rgba(15, 23, 42, 0.07);
+    }
+
+    .qs-image-wrap {
+      min-height: 180px;
+      padding: 0.9rem 0.9rem 0;
     }
 
     .qs-image {
-      height: 220px;
-      border-radius: 18px;
+      max-height: 180px;
+      border-radius: 16px;
     }
 
     .qs-content {
-      padding: 1.15rem 1rem 1.25rem;
+      padding: 1rem 0.95rem 1.15rem;
     }
 
-    .qs-logo {
-      max-height: 56px;
-      max-width: 150px;
+    .qs-content h3 {
+      min-height: auto;
     }
   }
 </style>

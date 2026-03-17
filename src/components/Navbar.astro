@@ -1,39 +1,178 @@
 ---
-
 const navItems = [
-  { label: "Hablemos", href: "https://moodle.elementalstudios.cl/login/index.php"  },
+  { label: "Login Moodle", href: "https://moodle.elementalstudios.cl/login/index.php" }
 ];
 ---
 
-<nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom sticky-top shadow-sm">
-  <div class="container">
-    <img src="/logorender.png" class="image-fluid" style="max-height: 100px;">
+<nav class="navbar-agency" id="mainNavbar">
+  <div class="container navbar-shell">
+    <a class="navbar-brand-agency" href="/" aria-label="Elemental Studios">
+      <img src="/logorender.png" alt="Elemental Studios" class="logo" />
+    </a>
 
-    
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
-        {navItems.map((item) => (
-        <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
-          <a href="https://moodle.elementalstudios.cl/login/index.php" class="btn btn-dark rounded-pill px-4" target="_blank">
-            Login Moodle
+    <ul class="nav-list-agency">
+      {navItems.map((item) => (
+        <li>
+          <a
+            href={item.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="login-btn"
+          >
+            {item.label}
           </a>
         </li>
-        ))}
-
-
-      </ul>
+      ))}
+    </ul>
   </div>
 </nav>
 
+<div class="navbar-spacer"></div>
+
+<script is:inline>
+  const navbar = document.getElementById('mainNavbar');
+
+  function toggleNavbarScroll() {
+    if (!navbar) return;
+    if (window.scrollY > 10) {
+      navbar.classList.add('is-scrolled');
+    } else {
+      navbar.classList.remove('is-scrolled');
+    }
+  }
+
+  toggleNavbarScroll();
+  window.addEventListener('scroll', toggleNavbarScroll, { passive: true });
+</script>
+
 <style>
-  .navbar-brand {
-    letter-spacing: 0.3px;
+  .navbar-agency {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+    transition: all 0.28s ease;
   }
 
-  .nav-link {
-    font-weight: 500;
+  .navbar-agency.is-scrolled {
+    background: rgba(255, 255, 255, 0.98);
+    box-shadow: 0 16px 38px rgba(15, 23, 42, 0.12);
   }
 
-  .nav-link:hover {
-    opacity: 0.75;
+  .navbar-shell {
+    width: min(1200px, calc(100% - 2rem));
+    margin: 0 auto;
+    min-height: 92px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .navbar-brand-agency {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+  }
+
+  .logo {
+    display: block;
+    max-height: 72px;
+    width: auto;
+    transition: transform 0.25s ease;
+  }
+
+  .navbar-brand-agency:hover .logo {
+    transform: scale(1.02);
+  }
+
+  .nav-list-agency {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  .login-btn,
+  .login-btn:link,
+  .login-btn:visited {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 40px;
+    padding: 0.85rem 1.5rem;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #28659e 0%, #347cc0 100%) !important;
+    color: #ffffff !important;
+    text-decoration: none !important;
+    font-weight: 800;
+    font-size: 0.95rem;
+    line-height: 1;
+    letter-spacing: 0.02em;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow:
+      0 14px 30px rgba(40, 101, 158, 0.30),
+      inset 0 1px 0 rgba(255, 255, 255, 0.18);
+    transition:
+      transform 0.22s ease,
+      box-shadow 0.22s ease,
+      filter 0.22s ease,
+      background 0.22s ease;
+    white-space: nowrap;
+  }
+
+  .login-btn:hover,
+  .login-btn:focus,
+  .login-btn:active {
+    color: #ffffff !important;
+    text-decoration: none !important;
+  }
+
+  .login-btn:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(135deg, #2c70b0 0%, #1f5180 100%) !important;
+    box-shadow:
+      0 18px 36px rgba(40, 101, 158, 0.36),
+      inset 0 1px 0 rgba(255, 255, 255, 0.18);
+    filter: saturate(1.06);
+  }
+
+  .login-btn:active {
+    transform: translateY(0);
+  }
+
+  .navbar-spacer {
+    height: 96px;
+  }
+
+  @media (max-width: 768px) {
+    .navbar-shell {
+      min-height: 82px;
+      width: min(1200px, calc(100% - 1rem));
+    }
+
+    .logo {
+      max-height: 80px;
+    }
+
+    .login-btn,
+    .login-btn:link,
+    .login-btn:visited {
+      min-height: 42px;
+      padding: 0.75rem 1rem;
+      font-size: 0.88rem;
+    }
+
+    .navbar-spacer {
+      height: 84px;
+    }
   }
 </style>
